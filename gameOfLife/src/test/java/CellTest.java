@@ -26,4 +26,46 @@ public class CellTest {
         assertEquals(exception.getMessage(), ErrorType.CELL_NEGATIVE_COORDINATES.message);
     }
 
+    @Test
+    public void alive_cell_dies_when_surrounded_by_more_than_3_alive_cells(){
+        Cell cell = new Cell(4,5, true);
+        Cell[] neighbours = { new Cell(3, 4, true), new Cell(3, 5, true), new Cell(3, 6, true), new Cell(4, 4, false), new Cell(4, 6, true) };
+        assertEquals(0, cell.updateStatus(neighbours));
+    }
+
+    @Test
+    public void empty_cell_stays_empty_when_surrounded_by_more_than_3_alive_cells(){
+        Cell cell = new Cell(4,5, false);
+        Cell[] neighbours = { new Cell(3, 4, true), new Cell(3, 5, true), new Cell(3, 6, true), new Cell(4, 4, false), new Cell(4, 6, true) };
+        assertEquals(0, cell.updateStatus(neighbours));
+    }
+
+    @Test
+    public void alive_cell_dies_when_surrounded_by_less_than_2_alive_cells(){
+        Cell cell = new Cell(4,5, true);
+        Cell[] neighbours = { new Cell(3, 4, true), new Cell(3, 5, false), new Cell(3, 6, false), new Cell(4, 4, false), new Cell(4, 6, false) };
+        assertEquals(0, cell.updateStatus(neighbours));
+    }
+
+    @Test
+    public void empty_cell_stays_empty_when_surrounded_by_less_than_2_alive_cells(){
+        Cell cell = new Cell(4,5, false);
+        Cell[] neighbours = { new Cell(3, 4, false), new Cell(3, 5, false), new Cell(3, 6, false), new Cell(4, 4, false), new Cell(4, 6, false) };
+        assertEquals(0, cell.updateStatus(neighbours));
+    }
+
+    @Test
+    public void empty_cell_comes_alive_when_surrounded_by_3_alive_cells(){
+        Cell cell = new Cell(4,5, false);
+        Cell[] neighbours = { new Cell(3, 4, false), new Cell(3, 5, true), new Cell(3, 6, false), new Cell(4, 4, true), new Cell(4, 6, true) };
+        assertEquals(1, cell.updateStatus(neighbours));
+    }
+
+    @Test
+    public void alive_cell_stays_alive_when_surrounded_by_3_alive_cells(){
+        Cell cell = new Cell(4,5, true);
+        Cell[] neighbours = { new Cell(3, 4, false), new Cell(3, 5, true), new Cell(3, 6, false), new Cell(4, 4, true), new Cell(4, 6, true) };
+        assertEquals(1, cell.updateStatus(neighbours));
+    }
+
 }

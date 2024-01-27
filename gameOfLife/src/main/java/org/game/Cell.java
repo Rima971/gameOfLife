@@ -17,4 +17,24 @@ public class Cell {
         this.column = column;
         this.alive = alive;
     }
+
+    public int updateStatus(Cell[] neighbours){
+        /*
+         * Any live cell with fewer than two live neighbors dies, as if by underpopulation. done
+         * Any live cell with two or three live neighbors lives on to the next generation.
+         * Any live cell with more than three live neighbors dies, as if by overpopulation. done
+         * Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.
+        */
+
+        int aliveNeighbours = 0;
+        for (Cell neighbour : neighbours){
+            if (neighbour.alive) aliveNeighbours++;
+        }
+        if (aliveNeighbours<2 || aliveNeighbours>3){
+            this.alive = false;
+        } else if (aliveNeighbours==3){
+            this.alive = true;
+        }
+        return this.alive ? 1 : 0;
+    }
 }
