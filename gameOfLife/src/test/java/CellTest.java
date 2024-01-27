@@ -18,6 +18,12 @@ public class CellTest {
     public void cell_creation_exceptions(){
         Exception exception = assertThrows(InvalidParameterException.class, ()->new Cell(-2, -10));
         assertEquals(exception.getMessage(), ErrorType.CELL_NEGATIVE_COORDINATES.message);
+
+        exception = assertThrows(InvalidParameterException.class, ()->new Cell(-2, 10));
+        assertEquals(exception.getMessage(), ErrorType.CELL_NEGATIVE_COORDINATES.message);
+
+        exception = assertThrows(InvalidParameterException.class, ()->new Cell(2, -10));
+        assertEquals(exception.getMessage(), ErrorType.CELL_NEGATIVE_COORDINATES.message);
     }
 
 }

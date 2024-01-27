@@ -33,4 +33,25 @@ public class BoardTest {
         exception = assertThrows(InvalidParameterException.class, ()->new Board(3, 12, 16));
         assertEquals(exception.getMessage(), ErrorType.BOARD_INVALID_SEEDING_PERCENTAGE.message);
     }
+
+    @Test
+    public void board_of_20x20_with_point2_seeding_percentage_generates_80_alive_cells_initially(){
+        Board board = new Board(20, 20, 0.2);
+        // round(0.2*20*20)
+        assertEquals(80, board.testAliveCellsCount());
+    }
+
+    @Test
+    public void board_of_7x11_with_point1_seeding_percentage_generates_8_alive_cells_initially(){
+        Board board = new Board(7, 11, 0.1);
+        // round(0.1*7*11)
+        assertEquals(8, board.testAliveCellsCount());
+    }
+
+    @Test
+    public void board_of_4x11_with_point1_seeding_percentage_generates_4_alive_cells_initially(){
+        Board board = new Board(4, 11, 0.1);
+        // round(0.1*4*11)
+        assertEquals(4, board.testAliveCellsCount());
+    }
 }
