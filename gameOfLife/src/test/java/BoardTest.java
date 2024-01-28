@@ -1,6 +1,5 @@
 import org.game.Board;
 import org.game.ErrorType;
-import org.game.Symbol;
 import org.junit.Test;
 
 import java.security.InvalidParameterException;
@@ -10,7 +9,7 @@ import static org.junit.Assert.assertThrows;
 
 public class BoardTest {
     @Test
-    public void succesfully_creates_board(){
+    public void successfully_creates_board(){
         new Board(10,20, 0.1);
     }
 
@@ -85,9 +84,7 @@ public class BoardTest {
                 {0,0,0,1,0,1,0,1,0,0},
                 {0,0,0,1,0,1,0,1,0,0}};
         Board board = new Board(initialBoardState);
-        System.out.println(board);
         board.update();
-        System.out.println(board);
         String expected = "-x----x---\n-xx--x--x-\n--x--x-xx-\n----------\n";
         assertEquals(board.toString(), expected);
     }

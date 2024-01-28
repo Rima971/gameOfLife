@@ -19,8 +19,8 @@ public class Board {
         this.totalCellsCount = rows * columns;
         this.initiallyAliveCellsRequired = Math.round(seedingPercentage * this.totalCellsCount);
         this.cellGrid = new Cell[rows][columns];
-        this.clonedCellGrid = this.cloneCellGrid();
         this.initialize();
+        this.clonedCellGrid = this.cloneCellGrid();
     }
 
     public Board(int[][] grid){
