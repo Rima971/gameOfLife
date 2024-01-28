@@ -25,6 +25,7 @@ public class Cell {
          * Any live cell with more than three live neighbors dies, as if by overpopulation.
          * Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.
         */
+        boolean previouslyALive = this.alive;
         int aliveNeighbours = 0;
         for (Cell neighbour : neighbours){
             if (neighbour.alive) aliveNeighbours++;
@@ -34,7 +35,10 @@ public class Cell {
         } else if (aliveNeighbours==3){
             this.alive = true;
         }
-        return this.alive ? 1 : -1;
+        if (previouslyALive!=this.alive){
+            return this.alive ? 1 : -1;
+        } else return 0;
+
     }
 
     @Override

@@ -1,8 +1,8 @@
 package org.game;
 
 public enum Symbol {
-    ALIVE("x"),
-    EMPTY("-");
+    ALIVE(" x "),
+    EMPTY(" - ");
 
     public final String representation;
     private Symbol(String representation){

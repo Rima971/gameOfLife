@@ -2,7 +2,6 @@ package org.game;
 
 import java.security.InvalidParameterException;
 import java.util.*;
-import java.util.function.Function;
 
 public class Board {
     private final Cell[][] cellGrid;
@@ -135,7 +134,7 @@ public class Board {
         return output.toString();
     }
 
-    public int testAliveCellsCount(){
+    public int getAliveCellsCount(){
         return this.aliveCellsCounter;
     }
 }
