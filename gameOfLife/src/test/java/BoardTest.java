@@ -1,5 +1,6 @@
 import org.game.Board;
 import org.game.ErrorType;
+import org.game.Symbol;
 import org.junit.Test;
 
 import java.security.InvalidParameterException;
@@ -44,14 +45,32 @@ public class BoardTest {
     @Test
     public void board_of_7x11_with_point1_seeding_percentage_generates_8_alive_cells_initially(){
         Board board = new Board(7, 11, 0.1);
-        // round(0.1*7*11)
+        // round( 0.1 * 7 * 11 )
         assertEquals(8, board.testAliveCellsCount());
     }
 
     @Test
     public void board_of_4x11_with_point1_seeding_percentage_generates_4_alive_cells_initially(){
         Board board = new Board(4, 11, 0.1);
-        // round(0.1*4*11)
+        // round( 0.1 * 4 * 11 )
         assertEquals(4, board.testAliveCellsCount());
+    }
+
+    @Test
+    public void board_is_updating_correctly_in_3x3_grid(){
+        int[][] initialBoardState = {{1,0,1},{0,1,0},{0,0,0}};
+        Board board = new Board(initialBoardState);
+        board.update();
+        String expected = "-x-\n-x-\n---\n";
+        assertEquals(board.toString(), expected);
+        board.update();
+        expected = "---\n---\n---\n";
+        assertEquals(board.toString(), expected);
+
+        int[][] initialBoardState2 = {{1,0,0},{0,1,0},{0,1,0}};
+        board = new Board(initialBoardState2);
+        board.update();
+        expected = "---\nxx-\n---\n";
+        assertEquals(board.toString(), expected);
     }
 }
