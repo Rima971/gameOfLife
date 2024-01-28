@@ -28,12 +28,13 @@ public class Board {
         this.rows = grid.length;
         this.columns = grid[0].length;
         this.cellGrid = new Cell[this.rows][this.columns];
+        this.clonedCellGrid = new Cell[this.rows][this.columns];
         for (int i=0; i<this.rows; i++){
             for (int j=0; j<this.columns; j++){
                 this.cellGrid[i][j] = new Cell(i,j,grid[i][j]==1);
+                this.clonedCellGrid[i][j] = new Cell(i,j,grid[i][j]==1);
             }
         }
-        this.clonedCellGrid = this.cloneCellGrid();
         this.totalCellsCount = rows * columns;
         this.initiallyAliveCellsRequired = 0;
     }

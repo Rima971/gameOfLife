@@ -72,5 +72,23 @@ public class BoardTest {
         board.update();
         expected = "---\nxx-\n---\n";
         assertEquals(board.toString(), expected);
+        board.update();
+        expected = "---\n---\n---\n";
+        assertEquals(board.toString(), expected);
+    }
+
+    @Test
+    public void board_is_updating_correctly_in_4x10_grid(){
+        int[][] initialBoardState = {
+                {1,0,1,0,0,0,1,0,1,0},
+                {0,1,0,0,0,0,1,1,0,0},
+                {0,0,0,1,0,1,0,1,0,0},
+                {0,0,0,1,0,1,0,1,0,0}};
+        Board board = new Board(initialBoardState);
+        System.out.println(board);
+        board.update();
+        System.out.println(board);
+        String expected = "-x----x---\n-xx--x--x-\n--x--x-xx-\n----------\n";
+        assertEquals(board.toString(), expected);
     }
 }
