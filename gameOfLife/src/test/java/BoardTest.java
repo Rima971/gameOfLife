@@ -37,7 +37,7 @@ public class BoardTest {
     @Test
     public void board_of_20x20_with_point2_seeding_percentage_generates_80_alive_cells_initially(){
         Board board = new Board(20, 20, 0.2);
-        // round(0.2*20*20)
+        // round(0.2 * 20 * 20)
         assertEquals(80, board.getAliveCellsCount());
     }
 
