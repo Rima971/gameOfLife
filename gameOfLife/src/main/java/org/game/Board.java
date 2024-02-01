@@ -52,7 +52,6 @@ public class Board {
     }
 
     private void populateAliveCells(){
-
         // creating a hashmap to record which coordinates were already populated randomly;
         HashMap<Integer, Boolean[]> record = new HashMap<Integer, Boolean[]>();
         Boolean[] columnRecordArray = new Boolean[columns];
@@ -84,20 +83,18 @@ public class Board {
 
     private Cell[] getNeighbours(int row, int column){
         ArrayList<Cell> neighbours = new ArrayList<Cell>();
+        int[] neighboursProximity = {-1, 0, 1};
 
-        boolean notTopmostRow = row>0 && row<this.rows;
-        boolean notBottommostRow = row>=0 && row<this.rows-1;
-        boolean notLeftmostColumn = column>0 && column<this.columns;
-        boolean notRightmostColumn = column>=0 && column<this.columns-1;
-
-        if (notTopmostRow) neighbours.add(this.clonedCellGrid[row-1][column]);
-        if (notBottommostRow) neighbours.add(this.clonedCellGrid[row+1][column]);
-        if (notLeftmostColumn) neighbours.add(this.clonedCellGrid[row][column-1]);
-        if (notRightmostColumn) neighbours.add(this.clonedCellGrid[row][column+1]);
-        if (notTopmostRow && notLeftmostColumn) neighbours.add(this.clonedCellGrid[row-1][column-1]);
-        if (notBottommostRow && notLeftmostColumn) neighbours.add(this.clonedCellGrid[row+1][column-1]);
-        if (notTopmostRow && notRightmostColumn) neighbours.add(this.clonedCellGrid[row-1][column+1]);
-        if (notBottommostRow && notRightmostColumn) neighbours.add(this.clonedCellGrid[row+1][column+1]);
+        for (int rowProximity: neighboursProximity){
+            for (int columnProximity: neighboursProximity){
+                int derivedRow = row + rowProximity;
+                int derivedColumn = column + columnProximity;
+                if ( derivedRow == row && derivedColumn == column) continue;
+                if (derivedRow >= 0 && derivedRow < this.rows && derivedColumn >= 0 && derivedColumn < this.columns){
+                    neighbours.add(this.clonedCellGrid[derivedRow][derivedColumn]);
+                }
+            }
+        }
 
         return neighbours.toArray(new Cell[0]);
     }
